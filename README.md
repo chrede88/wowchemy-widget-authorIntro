@@ -11,8 +11,6 @@ _[**Wowchemy**](https://wowchemy.com) makes it easy to create a beautiful websit
 
      # Your existing modules will appear here.
 
-     # Add your widget's GitHub URL below.
-     # Replace <USERNAME> and <WIDGET-NAME> with your GitHub username and widget name, respectively.
      [[module.imports]]
        path = "github.com/Chrede88/wowchemy-widget-authorIntro"
    ```
