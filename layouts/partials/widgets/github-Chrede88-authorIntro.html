@@ -1,0 +1,41 @@
+{{/* Display author name and role in large format. Add social icons if choosen */}}
+
+{{ $page := .page }}
+
+{{ $person_page_path := (printf "/authors/%s" $page.Params.author) }}
+{{ $person_page := site.GetPage $person_page_path }}
+{{ if not $person_page }}
+  {{ errorf "Could not find an author page at `%s`. Please check the value of `author` in your AuthorIntro widget and create an associated author page if one does not already exist." $person_page_path }}
+{{end}}
+{{ $person := $person_page.Params }}
+
+<div class="d-flex flex-column text-center portrait-title">
+  <div class="pt-3 justify-content-center">
+    <h1 style="font-size:calc(100% + 4.5vw)">{{ $person.title | markdownify | emojify }}</h1>
+  </div>
+  <div class="pt-1 justify-content-center">
+    <h3 style="font-size:calc(100% + 2.0vw)">{{ $person.role | markdownify | emojify }}</h3>
+  </div>
+  <div class="pt-2 justify-content-center">
+    <p>{{ $page.Params.subtitle | markdownify | emojify }}</p>
+  </div>
+
+  {{ $display_icons := false }}
+  {{ range where $person.social ".display.person" true }}
+    {{ if not $display_icons }}
+    <div class="pt-2 justify-content-center">
+      <ul class="network-icon" aria-hidden="true">
+    {{ end }}
+    {{ $display_icons = true }}
+    {{ $social_link := partial "functions/get_social_link" . }}
+        <li>
+          <a href="{{ $social_link.link | safeURL }}"{{ with $social_link.tooltip }} data-toggle="tooltip" data-placement="bottom" title="{{.}}"{{ end }} {{ $social_link.target | safeHTMLAttr }} aria-label="{{ $social_link.aria_label }}">
+            <i class="{{ $social_link.icon_pack }} {{ $social_link.pack_prefix }}-{{ $social_link.icon }} big-icon" aria-hidden="true"></i>
+          </a>
+        </li>
+  {{ end }}
+  {{ if $display_icons }}
+    </ul>
+  </div>
+  {{ end }}
+</div>
