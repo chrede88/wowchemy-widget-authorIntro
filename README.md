@@ -4,7 +4,7 @@ _[**Wowchemy**](https://wowchemy.com) makes it easy to create a beautiful websit
 
 ## 🌈 Add the Widget to your Site
 
-1. Install your widget in your site by referencing it at the bottom of your `config/_defaults/config.toml`:
+1. Install the widget in your site by referencing it at the bottom of your `config/_defaults/config.toml`:
    ```toml
    # At the bottom of your `config.toml` is a Module section:
    [module]
@@ -14,7 +14,7 @@ _[**Wowchemy**](https://wowchemy.com) makes it easy to create a beautiful websit
      [[module.imports]]
        path = "github.com/Chrede88/wowchemy-widget-authorIntro"
    ```
-2. Create an instance of your widget in `home/`, for example let's create `home/authorIntro.md`:
+2. Create an instance of the widget in `home/`, for example `home/authorIntro.md`:
    ```markdown
    ---
    # AuthorIntro widget.
